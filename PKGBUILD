@@ -66,22 +66,6 @@ sha256sums=('0bedadbf5788693ddebbcc913c893f1a97349af79ddde7144c2a80b401959f1c'
             'SKIP'
             '991b9f1001aa357c84d1d463e4d9377e7cbfdd010e142a106bc5dab0a4f30b7d'
             'SKIP')
-sha256sums_aarch64=('13472a4a7e3a76ea4e28f69f1df1d2c81bc52a34ea4d2ffa3808f6692a876413')
-sha256sums_x86_64=('2fe194b33ee42c65d6e1888d31fc7d1ef8172efbe6a3201e9a6fba81817256f3')
-b2sums=('f91cdd0b8727ce50ba286b321e85f394ff7e2eff27cde6e6e85e8abfc627b2b069bb5679d890dd33384123c866dc3c1325ad83953a4d08d4db669150cd88cccd'
-        'SKIP'
-        '9632ace64efb38ee784d731ea85aeb285f0c3db486112122c17059c359c490a54c6ef7cd9d1d1cdecc8ae1d43df94536890b83a6671c1166a6b2148308f1baf3'
-        'SKIP')
-b2sums_aarch64=('44e97f98f9498ebbfa0f5afe146f0ad4c6c90f4393ec31510c1c6cec7e44696805e9bd13ccd8e54a2361031585e839ea26eb1f574f5c33466ae7d37d408fa923')
-b2sums_x86_64=('0fe195286246b83f0859f79dd2f6c633f5370057aa6afad4525309822ade855f7f6ebcfb01109786313c9331ad61d667b0257ecc7b7f239d2f962c9d34f0b10d')
-
-# https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-
-# https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-
-# https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-
-# https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase

@@ -59,6 +59,7 @@ b2sums=('51eebd3aa3c64779308b0781818fd91921c1a7b0c3ffd361dbff01f8853f1cea7d4c70f
         'SKIP'
         'ad245fe70556a42c94d6f16b7c276a476bfb1ed5811a5030d7fefa3f5f226dd722f61c55cb9b76f5ff42082a6cbf88e04dc616adecc91131b68fe59cbed59035'
         'SKIP')
+b2sums_aarch64=('da74c565bf7ae62b077daa6d47cd7232ac132ce8df6b33fd4ace282fd6b594979b49ee6d55bf88e7b71f34bf6f1bf04414f79fc0c76b08b0c84d966b68a0108b')
 b2sums_x86_64=('dafee1f25d231199834869a5ce76a85eebb3c1ceac86f604270e93a40a22f29bcf797822481aff5aa5020c12359b9ad87ad8e0d36727166522510a07539d69d4')
 
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
@@ -287,7 +288,7 @@ _package-dtbs() {
   arch=(aarch64)
 
   cd $_srcname
-  local dtbdir="$pkgdir/boot/dtb"
+  local dtbdir="$pkgdir/usr/lib/dtbs"
 
   echo "Installing device tree binaries..."
   mkdir -p "$dtbdir"

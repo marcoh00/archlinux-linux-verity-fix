@@ -1,0 +1,60 @@
+#
+name: Create and publish Arch Linux packages
+
+on:
+  push:
+    tags:
+      - current
+
+jobs:
+  build-package-publish-repo:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/archlinux/archlinux:base-devel
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build package and create repository
+        id: build
+        run: |
+            set -euxo pipefail
+
+            echo "::group::Basic setup"
+            useradd -m builder
+            echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/99-allow-builder
+            chown -R builder .
+
+            sudo -u builder gpg --recv-keys 38DBBDC86092693E B8AC08600F108CDF
+
+            export PACKAGER="archlinux-linux-verity-fix repo <marco@wuthoehle.de>"
+            export MAKEFLAGS="--jobs=$(nproc)"
+
+            pacman -Sy
+            echo "::endgroup::"
+
+            echo "::group::Build kernel packages"
+            sudo --preserve-env=PACKAGER,MAKEFLAGS -u builder makepkg -s --noconfirm
+            echo "::endgroup::"
+
+            echo "::group::Create repository"
+            mkdir repo
+            find . -maxdepth 1 \( -name "*.pkg.tar.zst" -o -name "*.pkg.tar.zst.sig" \) -exec mv {} repo \;
+            chown -R builder repo
+
+            cd repo
+            sudo -u builder repo-add archlinux-linux-verity-fix.db.tar.zst *.pkg.tar.zst
+            echo "::endgroup::"
+
+      - name: Upload release
+        id: release
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda
+        with:
+          tag_name: current
+          files: |
+            repo/*.pkg.tar.zst
+            repo/*.db
+            repo/*.db.tar.zst
+            repo/*.files
+            repo/*.files.tar.zst

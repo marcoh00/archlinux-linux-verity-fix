@@ -46,6 +46,7 @@ _srctag=v${pkgver%.*}-${pkgver##*.}
 source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   $url/releases/download/$_srctag/linux-$_srctag.patch.zst{,.sig}
+  0001-fix-ovl-verity.patch
 )
 source_x86_64=(config.x86_64)
 validpgpkeys=(
@@ -56,14 +57,16 @@ validpgpkeys=(
 b2sums=('51eebd3aa3c64779308b0781818fd91921c1a7b0c3ffd361dbff01f8853f1cea7d4c70f6ee2ae3b7817aeca7605b63f12b0fa422d22c0a50fb2306553c49eda4'
         'SKIP'
         'ad245fe70556a42c94d6f16b7c276a476bfb1ed5811a5030d7fefa3f5f226dd722f61c55cb9b76f5ff42082a6cbf88e04dc616adecc91131b68fe59cbed59035'
-        'SKIP')
+        'SKIP'
+        '22061b3c569aa6daeab0b20fe1ef8071d1c3d1c004ad07c65c233a301432d81361909d84b30d1857d8b574c09d3a69ef180f73ea0dfd727ffacf0776bd2beed0')
 b2sums_x86_64=('dafee1f25d231199834869a5ce76a85eebb3c1ceac86f604270e93a40a22f29bcf797822481aff5aa5020c12359b9ad87ad8e0d36727166522510a07539d69d4')
 
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
 sha256sums=('0bedadbf5788693ddebbcc913c893f1a97349af79ddde7144c2a80b401959f1c'
             'SKIP'
             '991b9f1001aa357c84d1d463e4d9377e7cbfdd010e142a106bc5dab0a4f30b7d'
-            'SKIP')
+            'SKIP'
+            '81235cd68a6c7f739f1cbf670a16a8d9cbf03144a4af70a2c1ffa3a2d1ec0a60')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
